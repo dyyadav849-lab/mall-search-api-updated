@@ -9,7 +9,7 @@ from rapidfuzz import fuzz, process as rapidfuzz_process
 from collections import defaultdict
 import time
 from functools import lru_cache
-from utils import (
+from mall_search_api.utils import (
     CATEGORY_CANONICAL,
     TWOWHEELER_AUTOSUGGEST,
     BUSINESS_SYNONYMS,
@@ -4365,6 +4365,11 @@ def mall_autosuggest_api():
         print(traceback.format_exc())
         return jsonify({"message": "Internal server error", "error": str(e)}), 500
 
+
+def create_app():
+    return app
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8007)
+    create_app().run(host="0.0.0.0", port=8007)
 
